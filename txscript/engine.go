@@ -414,10 +414,10 @@ func (vm *Engine) CheckErrorCondition(finalScript bool) error {
 			"stack empty at end of script execution")
 	}
 
-	v, err := vm.dstack.PopBool()
+	/*v, err := vm.dstack.PopBool()
 	if err != nil {
 		return err
-	}
+	}*/
 	/*if !v {
 		// Log interesting data.
 		log.Tracef("%v", newLogClosure(func() string {
