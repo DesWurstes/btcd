@@ -418,7 +418,7 @@ func (vm *Engine) CheckErrorCondition(finalScript bool) error {
 	if err != nil {
 		return err
 	}
-	if !v {
+	/*if !v {
 		// Log interesting data.
 		log.Tracef("%v", newLogClosure(func() string {
 			dis0, _ := vm.DisasmScript(0)
@@ -428,7 +428,7 @@ func (vm *Engine) CheckErrorCondition(finalScript bool) error {
 		}))
 		return scriptError(ErrEvalFalse,
 			"false stack entry at end of script execution")
-	}
+	}*/
 	return nil
 }
 
