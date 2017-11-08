@@ -572,9 +572,14 @@ func (vm *Engine) checkHashTypeEncoding(hashType SigHashType) error {
 	}
 
 	sigHashType := hashType & ^SigHashAnyOneCanPay
-	if sigHashType < SigHashAll || sigHashType > SigHashSingle {
-		str := fmt.Sprintf("invalid hash type 0x%x", hashType)
-		return scriptError(ErrInvalidSigHashType, str)
+	if sigHashType < (SigHashAll + 0x40) || sigHashType > (SigHashSingle + 0x40) {
+		if sigHashType < SigHashAll || sigHashType > SigHashSingle {
+			str := fmt.Sprintf("invalid hash type 0x%x", hashType)
+			return scriptError(ErrInvalidSigHashType, str)
+		}else {
+			str := fmt.Sprintf("invalid Bitcoin Cash signing. Are you sure that you're using a Bitcoin Cash wallet? (Not Bitcoin)")
+			return scriptError(ErrInvalidSigHashType, str)
+		}
 	}
 	return nil
 }
